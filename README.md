@@ -114,4 +114,8 @@ class exampleLogvacAdapter
       # the request failed and you might want to do something
 ```
 
+## Contributing
+
+Contributions to the logvac js client are welcome and encouraged. This is a [Nanobox](https://nanobox.io) project and contributions should follow the [Nanobox Contribution Process & Guidelines](https://docs.nanobox.io/contributing/).
+
 [![open source](http://nano-assets.gopagoda.io/open-src/nanobox-open-src.png)](http://nanobox.io/open-source)
