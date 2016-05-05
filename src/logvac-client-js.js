@@ -99,7 +99,7 @@ Logvac = (function() {
     start = options.start || 0;
     end = options.end || 0;
     limit = options.limit || 100;
-    this._xhr.open('GET', this.options.host + "?&id=" + id + "&type=" + type + "&start=" + start + "&end=" + end + "&limit=" + limit);
+    this._xhr.open('GET', this.options.host + "?auth=" + this.options.auth + "&id=" + id + "&type=" + type + "&start=" + start + "&end=" + end + "&limit=" + limit);
     this._xhr.setRequestHeader("x-auth-token", this.options.auth);
     this._xhr.send();
     return this._xhr;
