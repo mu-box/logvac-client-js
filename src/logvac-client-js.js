@@ -9,7 +9,7 @@ Logvac = (function() {
       return;
     }
     Eventify.extend(this);
-    this.dash = new das();
+    this.dash = new dash();
     this.dash.setPrefix("Logvac");
     this.dash.setLevel(this.options.logLevel || "DEBUG");
     if (this.options.logsEnabled) {

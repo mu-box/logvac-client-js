@@ -16,7 +16,7 @@
     Eventify.extend(@)
 
     # add logging capabilities
-    @dash = new das()
+    @dash = new dash()
     @dash.setPrefix("Logvac")
     @dash.setLevel(@options.logLevel || "DEBUG")
     if @options.logsEnabled then @dash.enableLogs()
