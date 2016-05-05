@@ -33,6 +33,15 @@ Client specific commands deal specifically with requesting logs from logvac, and
 | `done` | returns whether or not the last known operation is done | `logvac.done()` |
 | `status` | returns the status code of the last known operation | `logvac.status()` |
 
+##### GET options
+| Option | Description | Default |
+| --- | --- |
+| `id` | get logs of id `id` | "" |
+| `type` | get logs of type `type` | "app" |
+| `start` | return `limit` number of logs from `start` backwards | 0ns |
+| `end` | return `limit` amount of logs from `start` to `end` | 0ns |
+| `limit` | return `limit` amount of logs | 100 |
+
 #### Event specific commands
 
 The logvac client also comes with its own built in event system. These commands allow you to leverage the system to create any types of events you want based on what data you get back from logvac:

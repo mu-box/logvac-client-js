@@ -12,14 +12,13 @@
         \n\nThe Logvac client will be unable to function properly until all dependencies are satisfied."
       return
 
-    # add event capabilities
-    Eventify.enhance(@)
+  # add event capabilities
+    Eventify.extend(@)
 
     # add logging capabilities
-    Logify.enhance(@)
-    @logName = "[Logvac]"
-    @logLevel = @options.logLevel || "DEBUG"
-    @logsEnabled = @options.logsEnabled || false
+    dash.setPrefix("Logvac")
+    dash.setLevel(@options.logLevel || "DEBUG")
+    if @options.logsEnabled then dash.enableLogs()
 
     #
     @HOST           = @options.host || ""
@@ -54,6 +53,7 @@
     tag   = options.tag || ""
     type  = options.type || ""
     start = options.start || 0
+    end   = options.end || 0
     limit = options.limit || 100
 
     # open the request; async by default
