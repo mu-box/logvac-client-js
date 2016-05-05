@@ -47,7 +47,7 @@ Logvac = (function() {
       return function() {
         var args, data, key;
         key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.dash.info(key, data, args);
+        return _this.dash.debug(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.loadend", (function(_this) {

@@ -26,7 +26,7 @@
     @on "logvac:_xhr.progress",   (key, data, args...) => @dash.debug key, data, args
     @on "logvac:_xhr.abort",      (key, data, args...) => @dash.debug key, data, args
     @on "logvac:_xhr.error",      (key, data, args...) => @dash.error key, data, args
-    @on "logvac:_xhr.load",       (key, data, args...) => @dash.info key, data, args
+    @on "logvac:_xhr.load",       (key, data, args...) => @dash.debug key, data, args
     @on "logvac:_xhr.loadend",    (key, data, args...) => @dash.debug key, data, args
 
   ## api
