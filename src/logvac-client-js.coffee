@@ -20,10 +20,6 @@
     dash.setLevel(@options.logLevel || "DEBUG")
     if @options.logsEnabled then dash.enableLogs()
 
-    #
-    @HOST           = @options.host || ""
-    @X_AUTH_TOKEN   = @options.authToken || ""
-
     # httpRequest messages
     @on "logvac:_xhr.loadstart",  (key, data, args...) => dash.debug key, data, args
     @on "logvac:_xhr.progress",   (key, data, args...) => dash.debug key, data, args
@@ -56,10 +52,12 @@
     limit = options.limit || 100
 
     # open the request; async by default
-    @_xhr.open 'GET', "#{@HOST}?auth=#{@X_AUTH_TOKEN}&id=#{id}&type=#{type}&start=#{start}&end=#{end}&limit=#{limit}"
+    @_xhr.open 'GET', "#{@options.host}?&id=#{id}&type=#{type}&start=#{start}&end=#{end}&limit=#{limit}"
 
-    # set the auth header
-    @_xhr.setRequestHeader("x-auth-token", @X_AUTH_TOKEN)
+    # set the auth header; because this is an ajax request we need to set the header
+    # rather than a query string param. Logvac has built in to accept this, otherwise
+    # we get CORS issues (same origin policy)
+    @_xhr.setRequestHeader("x-auth-token", @options.auth)
 
     # send the request
     @_xhr.send()

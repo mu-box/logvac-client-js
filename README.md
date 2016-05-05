@@ -11,7 +11,7 @@ options = {
   logs_enabled : true
   log_level : "INFO" # 'DEBUG', 'INFO', 'WARN', 'ALERT', 'ERROR', 'SILENT'
   host: "http://127.0.0.1:1234"
-  x_auth_token: "TOKEN"
+  auth: "TOKEN"
 }
 
 #

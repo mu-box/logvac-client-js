@@ -14,8 +14,6 @@ Logvac = (function() {
     if (this.options.logsEnabled) {
       dash.enableLogs();
     }
-    this.HOST = this.options.host || "";
-    this.X_AUTH_TOKEN = this.options.authToken || "";
     this.on("logvac:_xhr.loadstart", (function(_this) {
       return function() {
         var args, data, key;
@@ -101,8 +99,8 @@ Logvac = (function() {
     start = options.start || 0;
     end = options.end || 0;
     limit = options.limit || 100;
-    this._xhr.open('GET', this.HOST + "?auth=" + this.X_AUTH_TOKEN + "&id=" + id + "&type=" + type + "&start=" + start + "&end=" + end + "&limit=" + limit);
-    this._xhr.setRequestHeader("x-auth-token", this.X_AUTH_TOKEN);
+    this._xhr.open('GET', this.options.host + "?&id=" + id + "&type=" + type + "&start=" + start + "&end=" + end + "&limit=" + limit);
+    this._xhr.setRequestHeader("x-auth-token", this.options.auth);
     this._xhr.send();
     return this._xhr;
   };
