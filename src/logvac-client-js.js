@@ -20,42 +20,42 @@ Logvac = (function() {
       return function() {
         var args, data, key;
         key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, data, args);
+        return dash.debug(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.progress", (function(_this) {
       return function() {
         var args, data, key;
         key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, data, args);
+        return dash.debug(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.abort", (function(_this) {
       return function() {
         var args, data, key;
         key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, data, args);
+        return dash.debug(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.error", (function(_this) {
       return function() {
         var args, data, key;
         key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.error(key, data, args);
+        return dash.error(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.load", (function(_this) {
       return function() {
         var args, data, key;
         key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.info(key, data, args);
+        return dash.info(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.loadend", (function(_this) {
       return function() {
         var args, data, key;
         key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, data, args);
+        return dash.debug(key, data, args);
       };
     })(this));
   }
