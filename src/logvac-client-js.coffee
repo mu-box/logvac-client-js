@@ -4,15 +4,15 @@
   constructor : (@options={}) ->
 
     # check for dependencies
-    if typeof(Eventify) == "undefined" || typeof(Logify) == "undefined"
+    if typeof(Eventify) == "undefined" || typeof(dash) == "undefined"
       console.warn "You are missing the following dependencies:
         \n\t#{if typeof(Eventify) == 'undefined' then 'Eventify (https://github.com/sdomino/eventify)' else ''}
-        \n\t#{if typeof(Logify) == 'undefined' then 'Logify (https://github.com/sdomino/logify)' else ''}
+        \n\t#{if typeof(dash) == 'undefined' then 'dash (https://github.com/sdomino/dash)' else ''}
 
         \n\nThe Logvac client will be unable to function properly until all dependencies are satisfied."
       return
 
-  # add event capabilities
+    # add event capabilities
     Eventify.extend(@)
 
     # add logging capabilities
@@ -25,16 +25,16 @@
     @X_AUTH_TOKEN   = @options.authToken || ""
 
     # httpRequest messages
-    @on "logvac:_xhr.loadstart",  (key, evnt, args...) => @debug key, evnt, args
-    @on "logvac:_xhr.progress",   (key, evnt, args...) => @debug key, evnt, args
-    @on "logvac:_xhr.abort",      (key, evnt, args...) => @debug key, evnt, args
-    @on "logvac:_xhr.error",      (key, evnt, args...) => @error key, evnt, args
-    @on "logvac:_xhr.load",       (key, evnt, args...) => @info key, evnt, args
-    @on "logvac:_xhr.loadend",    (key, evnt, args...) => @debug key, evnt, args
+    @on "logvac:_xhr.loadstart",  (key, data, args...) => @debug key, data, args
+    @on "logvac:_xhr.progress",   (key, data, args...) => @debug key, data, args
+    @on "logvac:_xhr.abort",      (key, data, args...) => @debug key, data, args
+    @on "logvac:_xhr.error",      (key, data, args...) => @error key, data, args
+    @on "logvac:_xhr.load",       (key, data, args...) => @info key, data, args
+    @on "logvac:_xhr.loadend",    (key, data, args...) => @debug key, data, args
 
   ## api
 
-  #
+  # get
   get: (options={}) ->
 
     #
@@ -42,22 +42,21 @@
 
     # handle events
     @_xhr.onloadstart = => @fire 'logvac:_xhr.loadstart', @_xhr.response
-    @_xhr.onprogress = => @fire 'logvac:_xhr.progress', @_xhr.response
-    @_xhr.onabort = => @fire 'logvac:_xhr.abort', @_xhr.response
-    @_xhr.onerror = => @fire 'logvac:_xhr.error', @_xhr.response
-    @_xhr.onload = => @fire 'logvac:_xhr.load', @_xhr.response
-    @_xhr.onloadend = => @fire 'logvac:_xhr.loadend', @_xhr.response
+    @_xhr.onprogress  = => @fire 'logvac:_xhr.progress', @_xhr.response
+    @_xhr.onabort     = => @fire 'logvac:_xhr.abort', @_xhr.response
+    @_xhr.onerror     = => @fire 'logvac:_xhr.error', @_xhr.response
+    @_xhr.onload      = => @fire 'logvac:_xhr.load', @_xhr.response
+    @_xhr.onloadend   = => @fire 'logvac:_xhr.loadend', @_xhr.response
 
     # set request options || default
     id    = options.id || ""
-    tag   = options.tag || ""
     type  = options.type || ""
     start = options.start || 0
     end   = options.end || 0
     limit = options.limit || 100
 
     # open the request; async by default
-    @_xhr.open 'GET', "#{@HOST}?id=#{id}&tag=#{tag}&type=#{type}&start=#{start}&limit=#{limit}"
+    @_xhr.open 'GET', "#{@HOST}?auth=#{@X_AUTH_TOKEN}&id=#{id}&type=#{type}&start=#{start}&end=#{end}&limit=#{limit}"
 
     # set the auth header
     @_xhr.setRequestHeader("x-auth-token", @X_AUTH_TOKEN)

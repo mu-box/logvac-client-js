@@ -4,8 +4,8 @@ var Logvac,
 Logvac = (function() {
   function Logvac(options1) {
     this.options = options1 != null ? options1 : {};
-    if (typeof Eventify === "undefined" || typeof Logify === "undefined") {
-      console.warn("You are missing the following dependencies: \n\t" + (typeof Eventify === 'undefined' ? 'Eventify (https://github.com/sdomino/eventify)' : '') + " \n\t" + (typeof Logify === 'undefined' ? 'Logify (https://github.com/sdomino/logify)' : '') + " \n\nThe Logvac client will be unable to function properly until all dependencies are satisfied.");
+    if (typeof Eventify === "undefined" || typeof dash === "undefined") {
+      console.warn("You are missing the following dependencies: \n\t" + (typeof Eventify === 'undefined' ? 'Eventify (https://github.com/sdomino/eventify)' : '') + " \n\t" + (typeof dash === 'undefined' ? 'dash (https://github.com/sdomino/dash)' : '') + " \n\nThe Logvac client will be unable to function properly until all dependencies are satisfied.");
       return;
     }
     Eventify.extend(this);
@@ -18,50 +18,50 @@ Logvac = (function() {
     this.X_AUTH_TOKEN = this.options.authToken || "";
     this.on("logvac:_xhr.loadstart", (function(_this) {
       return function() {
-        var args, evnt, key;
-        key = arguments[0], evnt = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, evnt, args);
+        var args, data, key;
+        key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+        return _this.debug(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.progress", (function(_this) {
       return function() {
-        var args, evnt, key;
-        key = arguments[0], evnt = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, evnt, args);
+        var args, data, key;
+        key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+        return _this.debug(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.abort", (function(_this) {
       return function() {
-        var args, evnt, key;
-        key = arguments[0], evnt = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, evnt, args);
+        var args, data, key;
+        key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+        return _this.debug(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.error", (function(_this) {
       return function() {
-        var args, evnt, key;
-        key = arguments[0], evnt = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.error(key, evnt, args);
+        var args, data, key;
+        key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+        return _this.error(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.load", (function(_this) {
       return function() {
-        var args, evnt, key;
-        key = arguments[0], evnt = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.info(key, evnt, args);
+        var args, data, key;
+        key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+        return _this.info(key, data, args);
       };
     })(this));
     this.on("logvac:_xhr.loadend", (function(_this) {
       return function() {
-        var args, evnt, key;
-        key = arguments[0], evnt = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-        return _this.debug(key, evnt, args);
+        var args, data, key;
+        key = arguments[0], data = arguments[1], args = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+        return _this.debug(key, data, args);
       };
     })(this));
   }
 
   Logvac.prototype.get = function(options) {
-    var end, id, limit, start, tag, type;
+    var end, id, limit, start, type;
     if (options == null) {
       options = {};
     }
@@ -97,12 +97,11 @@ Logvac = (function() {
       };
     })(this);
     id = options.id || "";
-    tag = options.tag || "";
     type = options.type || "";
     start = options.start || 0;
     end = options.end || 0;
     limit = options.limit || 100;
-    this._xhr.open('GET', this.HOST + "?id=" + id + "&tag=" + tag + "&type=" + type + "&start=" + start + "&limit=" + limit);
+    this._xhr.open('GET', this.HOST + "?auth=" + this.X_AUTH_TOKEN + "&id=" + id + "&type=" + type + "&start=" + start + "&end=" + end + "&limit=" + limit);
     this._xhr.setRequestHeader("x-auth-token", this.X_AUTH_TOKEN);
     this._xhr.send();
     return this._xhr;

@@ -59,8 +59,8 @@ The logvac client also comes with its own built in event system. These commands 
 ```coffeescript
 
 # handle an event
-logvac.once "logvac:event", (data) => # do this only once
-logvac.on "logvac:event", (data) => # do this every fire
+logvac.once "logvac:event", (key, data, args...) => # do this only once
+logvac.on "logvac:event", (key, data, args...) => # do this every fire
 
 # fire an event
 logvac.fire "logvac:event", data
@@ -107,19 +107,19 @@ class exampleLogvacAdapter
   constructor : ( @options={} ) ->
 
     #
-    logvac.on "logvac:_xhr.loadstart", (key, data) =>
+    logvac.on "logvac:_xhr.loadstart", (key, data, args...) =>
       # the request has been sent
 
     #
-    logvac.on "logvac:_xhr.progress", (key, data) =>
+    logvac.on "logvac:_xhr.progress", (key, data, args...) =>
       # monitor progress of the request
 
     #
-    logvac.on "logvac:_xhr.load",  (e) =>
+    logvac.on "logvac:_xhr.load",  (key, data, args...) =>
       # the request is complete and you have your data
 
     #
-    logvac.on "logvac:_xhr.error", (e) =>
+    logvac.on "logvac:_xhr.error", (key, data, args...) =>
       # the request failed and you might want to do something
 ```
 
