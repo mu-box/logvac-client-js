@@ -8,10 +8,10 @@ Creating a new client is very easy, and only has a small amount of configurable 
 
 # logs are disabled by default and set to "DEBUG"
 options = {
-  logs_enabled : true
-  log_level : "INFO" # 'DEBUG', 'INFO', 'WARN', 'ALERT', 'ERROR', 'SILENT'
-  host: "http://127.0.0.1:1234"
-  auth: "TOKEN"
+  logs_enabled: true
+  log_level:    "INFO" # 'DEBUG', 'INFO', 'WARN', 'ALERT', 'ERROR', 'SILENT'
+  host:         "http://127.0.0.1:1234" # address to running logvac
+  auth:         "TOKEN" # authentication token if needed
 }
 
 #
