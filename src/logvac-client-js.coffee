@@ -46,14 +46,14 @@
     @_xhr.onloadend   = => @fire 'logvac:_xhr.loadend', @_xhr.response
 
     # set request options || default
-    id    = options.id || ""
-    type  = options.type || ""
+    id    = options.id    || ""
+    type  = options.type  || ""
     start = options.start || 0
-    end   = options.end || 0
+    end   = options.end   || 0
     limit = options.limit || 100
 
     # open the request; async by default
-    @_xhr.open 'GET', "#{@options.host}?auth=#{@options.auth}&id=#{id}&type=#{type}&start=#{start}&end=#{end}&limit=#{limit}"
+    @_xhr.open 'GET', "#{@options.host}?#{@options.auth}&id=#{id}&type=#{type}&start=#{start}&end=#{end}&limit=#{limit}"
 
     # set the auth header; because this is an ajax request we need to set the header
     # rather than a query string param. Logvac has built in to accept this, otherwise
