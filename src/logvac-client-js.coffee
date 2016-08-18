@@ -15,11 +15,11 @@
     # add event capabilities
     Eventify.extend(@)
 
-    # add logging capabilities
+    # add logging capabilities; logs are disabled by default
     @dash = new dash()
     @dash.setPrefix("Logvac")
-    @dash.setLevel(@options.logLevel || "DEBUG")
-    if @options.logsEnabled then @dash.enableLogs()
+    @dash.setLevel(@options.logging.level || "INFO")
+    if @options.logging.enabled then @dash.enableLogs()
 
     # httpRequest messages
     @on "logvac:_xhr.loadstart",  (key, data, args...) => @dash.debug key, data, args
