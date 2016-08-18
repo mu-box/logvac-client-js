@@ -11,8 +11,8 @@ Logvac = (function() {
     Eventify.extend(this);
     this.dash = new dash();
     this.dash.setPrefix("Logvac");
-    this.dash.setLevel(this.options.logLevel || "DEBUG");
-    if (this.options.logsEnabled) {
+    this.dash.setLevel(this.options.logging.level || "INFO");
+    if (this.options.logging.enabled) {
       this.dash.enableLogs();
     }
     this.on("logvac:_xhr.loadstart", (function(_this) {
