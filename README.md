@@ -1,4 +1,4 @@
-The logvac javascript client provides a simple API for requesting logs from [logvac](https://github.com/nanopack/logvac). As the client makes requests from logvac it will fire corresponding events throughout the lifecycle of the request. Once complete it will fire a final request with the response data that can be handled however you wish.
+The logvac javascript client provides a simple API for requesting logs from [logvac](https://github.com/mu-box/logvac). As the client makes requests from logvac it will fire corresponding events throughout the lifecycle of the request. Once complete it will fire a final request with the response data that can be handled however you wish.
 
 ## New Client
 
@@ -87,7 +87,7 @@ This is what a logvac entry might look like:
   "tag": "build-1234",
   "type": "deploy",
   "priority": "4",
-  "message": "$ mv nanobox/.htaccess .htaccess\n[✓] SUCCESS"
+  "message": "$ mv microbox/.htaccess .htaccess\n[✓] SUCCESS"
 }
 ```
 
@@ -125,6 +125,6 @@ class exampleLogvacAdapter
 
 ## Contributing
 
-Contributions to the logvac js client are welcome and encouraged. This is a [Nanobox](https://nanobox.io) project and contributions should follow the [Nanobox Contribution Process & Guidelines](https://docs.nanobox.io/contributing/).
+Contributions to the logvac js client are welcome and encouraged. This is a [Microbox](https://microbox.cloud) project and contributions should follow the [Microbox Contribution Process & Guidelines](https://docs.microbox.cloud/contributing/).
 
-[![open source](http://nano-assets.gopagoda.io/open-src/nanobox-open-src.png)](http://nanobox.io/open-source)
+[![open source](http://microbox.rocks/assets/open-src/microbox-open-src.png)](http://microbox.cloud/open-source)

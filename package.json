@@ -1,12 +1,12 @@
 {
   "name": "logvac-client-js",
   "version": "0.0.4",
-  "description": "A javascript client connecting to and consuming nanobox/logvac messages",
+  "description": "A javascript client connecting to and consuming mubox/logvac messages",
   "author": "Steve Domino <sdomino@pagodabox.com>",
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nanopack/logvac-client-js"
+    "url": "https://github.com/mu-box/logvac-client-js"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
